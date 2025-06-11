@@ -1,0 +1,19 @@
+{% extends 'recipes/base.html' %}
+
+{% block title %}All Recipes{% endblock %}
+
+{% block content %}
+    <h1>All Recipes</h1>
+    {% if recipes %}
+        <ul>
+            {% for recipe in recipes %}
+                <li>
+                    <h2><a href="{% url 'recipes:recipe_detail' recipe.pk %}">{{ recipe.title }}</a></h2>
+                    <p>{{ recipe.description|default:"No description provided." }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recipes found. Add some from the <a href="/admin/">admin interface</a>!</p>
+    {% endif %}
+{% endblock %}
